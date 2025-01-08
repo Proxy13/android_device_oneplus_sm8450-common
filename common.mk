@@ -1,11 +1,8 @@
 #
-# Copyright (C) 2021-2023 The LineageOS Project
+# AOSPA WIP!!!!
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-
-# Add common definitions for Qualcomm
-$(call inherit-product, hardware/qcom-caf/common/common.mk)
 
 # A/B
 $(call inherit-product, $(SRC_TARGET_DIR)/product/generic_ramdisk.mk)
