@@ -154,7 +154,7 @@ PRODUCT_PACKAGES += \
 
 # Hotword Enrollement
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/permissions/privapp-permissions-hotword.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-hotword.xml
+    $(LOCAL_PATH)/configs/privapp-permissions-hotword.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-hotword.xml
 
 # Init
 PRODUCT_PACKAGES += \
@@ -195,11 +195,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     vendor.lineage.health-service.default
 
-# Hotword Enrollement
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/permissions/privapp-permissions-hotword.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-hotword.xml
-
-
 # Graphics
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.opengles.aep.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.opengles.aep.xml \
@@ -237,8 +232,8 @@ PRODUCT_PACKAGES += \
     libstagefrighthw
 
 # Overlays
-$(call inherit-product, hardware/oplus/overlay/generic/generic.mk)
-$(call inherit-product, hardware/oplus/overlay/qssi/qssi.mk)
+#$(call inherit-product, hardware/oplus/overlay/generic/generic.mk)
+#$(call inherit-product, hardware/oplus/overlay/qssi/qssi.mk)
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
 PRODUCT_PACKAGES += \
@@ -396,8 +391,5 @@ PRODUCT_PACKAGES += \
     libnl \
     libpng.vendor \
     libwfdaac_vendor
-
-PRODUCT_BOOT_JARS += \
-    WfdCommon
 
 
