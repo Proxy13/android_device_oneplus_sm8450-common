@@ -7,7 +7,6 @@
             <instance>default</instance>
         </interface>
     </hal>
-
     <hal format="hidl" optional="true">
         <name>android.hardware.audio</name>
         <version>7.1</version>
@@ -16,7 +15,6 @@
             <instance>default</instance>
         </interface>
     </hal>
-
     <hal format="hidl" optional="true">
         <name>android.hardware.audio.effect</name>
         <version>7.1</version>
@@ -25,16 +23,6 @@
             <instance>default</instance>
         </interface>
     </hal>
-
-    <hal format="hidl" optional="true">
-        <name>android.hardware.bluetooth.audio</name>
-        <version>4.0</version>
-        <interface>
-            <name>IBluetoothAudioProviderFactory</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-
     <hal format="hidl" optional="true">
         <name>android.hardware.drm</name>
         <version>1.0</version>
@@ -43,7 +31,6 @@
             <instance>clearkey</instance>
         </interface>
     </hal>
-
     <hal format="hidl" optional="true">
         <name>android.hardware.health</name>
         <version>1.0</version>
@@ -52,7 +39,6 @@
             <instance>default</instance>
         </interface>
     </hal>
-
     <hal format="hidl" optional="true">
         <name>android.hardware.light</name>
         <version>2.0</version>
@@ -61,7 +47,6 @@
             <instance>default</instance>
         </interface>
     </hal>
-
     <hal format="hidl" optional="true">
         <name>android.hardware.power</name>
         <version>4.0</version>
@@ -70,7 +55,6 @@
             <instance>default</instance>
         </interface>
     </hal>
-
     <hal format="hidl" optional="true">
         <name>android.hardware.wifi</name>
         <version>2.0</version>
@@ -79,7 +63,6 @@
             <instance>default</instance>
         </interface>
     </hal>
-
     <hal format="hidl" optional="true">
         <name>android.hardware.wifi.hostapd</name>
         <version>2.0</version>
@@ -88,7 +71,6 @@
             <instance>default</instance>
         </interface>
     </hal>
-
     <hal format="hidl" optional="true">
         <name>android.hardware.wifi.supplicant</name>
         <version>3.0</version>
@@ -97,7 +79,6 @@
             <instance>default</instance>
         </interface>
     </hal>
-
     <hal format="hidl" optional="true">
         <name>vendor.goodix.hardware.biometrics.fingerprint</name>
         <version>2.1</version>
@@ -106,25 +87,6 @@
             <instance>default</instance>
         </interface>
     </hal>
-
-    <hal format="hidl" optional="true">
-        <name>vendor.oplus.hardware.cameraextension</name>
-        <version>1.0</version>
-        <interface>
-            <name>ICameraExtensionService</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-
-    <hal format="hidl" optional="true">
-        <name>vendor.oplus.hardware.communicationcenter</name>
-        <version>1.0</version>
-        <interface>
-            <name>IDmtpService</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-
     <hal format="hidl" optional="true">
         <name>vendor.oplus.hardware.cwb</name>
         <version>1.0</version>
@@ -133,26 +95,6 @@
             <instance>default</instance>
         </interface>
     </hal>
-
-    <hal format="hidl" optional="true">
-        <name>vendor.oplus.hardware.performance</name>
-        <version>1.0</version>
-        <interface>
-            <name>IPerformance</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-
-    <hal format="hidl" optional="true">
-        <name>vendor.oplus.hardware.subsys_interface.subsys_radio</name>
-        <version>1.0</version>
-        <interface>
-            <name>ISubsysRadio</name>
-            <instance>slot1</instance>
-            <instance>slot2</instance>
-        </interface>
-    </hal>
-
     <hal format="hidl" optional="true">
         <name>vendor.pixelworks.hardware.display</name>
         <version>1.1</version>
@@ -161,12 +103,19 @@
             <instance>default</instance>
         </interface>
     </hal>
-
     <hal format="hidl" optional="true">
         <name>vendor.pixelworks.hardware.feature</name>
         <version>1.0</version>
         <interface>
             <name>IIrisFeature</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+        <hal format="hidl">
+        <name>android.hardware.bluetooth.audio</name>
+        <version>4.0</version>
+        <interface>
+            <name>IBluetoothAudioProvidersFactory</name>
             <instance>default</instance>
         </interface>
     </hal>
