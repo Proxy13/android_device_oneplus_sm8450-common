@@ -81,12 +81,19 @@ BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES  := true
 BUILD_BROKEN_VENDOR_PROPERTY_NAMESPACE := true
 
 # HIDL
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
-    $(COMMON_PATH)/device_framework_matrix.xml 
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
+   $(COMMON_PATH)/configs/vintf/framework_compatibility_matrix.xml
 
-DEVICE_FRAMEWORK_MANIFEST_FILE += $(COMMON_PATH)/framework_manifest.xml
-DEVICE_MANIFEST_FILE := $(COMMON_PATH)/manifest.xml
-ODM_MANIFEST_FILES := $(COMMON_PATH)/manifest_odm.xml
+DEVICE_MANIFEST_FILE += \
+    $(COMMON_PATH)/configs/vintf/taro_manifest.xml \
+    $(COMMON_PATH)/configs/vintf/wly_manifest.xml
+
+
+#DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
+#     $(COMMON_PATH)/configs/vintf/device_framework_matrix.xml 
+#DEVICE_FRAMEWORK_MANIFEST_FILE += $(COMMON_PATH)/configs/vintf/framework_manifest.xml
+#DEVICE_MANIFEST_FILE := $(COMMON_PATH)/configs/vintf/manifest.xml
+#ODM_MANIFEST_FILES := $(COMMON_PATH)/configs/vintf/manifest_odm.xml
 
 # Init
 TARGET_INIT_VENDOR_LIB := //$(COMMON_PATH):libinit_oplus
@@ -98,21 +105,24 @@ SOONG_CONFIG_ufsbsg_ufsframework := bsg
 
 # Kernel
 BOARD_KERNEL_PAGESIZE := 4096
+
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_RAMDISK_USE_LZ4 := true
 BOARD_USES_GENERIC_KERNEL_IMAGE := true
 TARGET_HAS_GENERIC_KERNEL_HEADERS := true
 BOARD_USES_QCOM_MERGE_DTBS_SCRIPT := true
+BOARD_KERNEL_SEPARATED_DTBO := true
+
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_IMAGE_NAME := Image
 
 BOARD_BOOT_HEADER_VERSION := 4
 BOARD_MKBOOTIMG_ARGS := --header_version $(BOARD_BOOT_HEADER_VERSION)
-BOARD_KERNEL_SEPARATED_DTBO := true
 
 BOARD_KERNEL_CMDLINE := \
     mtdoops.fingerprint=$(AOSPA_VERSION) \
     swinfo.fingerprint=$(AOSPA_VERSION) \
+    msm_geni_serial.con_enabled=0 \
     allow_file_spec_access \
     irqaffinity=0-3 \
     pelt=8
@@ -122,6 +132,9 @@ BOARD_BOOTCONFIG:= \
     androidboot.init_fatal_reboot_target=recovery \
     androidboot.memcg=1 \
     androidboot.usbcontroller=a600000.dwc3
+
+BOARD_BOOTCONFIG += androidboot.selinux=permissive
+
 
 # Lineage Health
 TARGET_HEALTH_CHARGING_CONTROL_CHARGING_PATH := /sys/class/oplus_chg/battery/mmi_charging_enable
@@ -152,6 +165,8 @@ BOARD_QTI_DYNAMIC_PARTITIONS_SIZE ?= 11270094848 # (BOARD_SUPER_PARTITION_SIZE -
 BOARD_SUPER_PARTITION_GROUPS := qti_dynamic_partitions
 BOARD_SUPER_PARTITION_SIZE ?= 11274289152
 BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
+
+# Partition sizes
 TARGET_COPY_OUT_ODM := odm
 TARGET_COPY_OUT_PRODUCT := product
 TARGET_COPY_OUT_SYSTEM_EXT := system_ext
@@ -179,6 +194,10 @@ VENDOR_SECURITY_PATCH := $(BOOT_SECURITY_PATCH)
 # SEPolicy
 #include device/qcom/sepolicy_vndr/SEPolicy.mk
 include hardware/oplus/sepolicy/qti/SEPolicy.mk
+BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
+SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
+
 
 # Verified Boot
 BOARD_AVB_ENABLE := true

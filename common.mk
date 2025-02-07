@@ -72,13 +72,32 @@ PRODUCT_PACKAGES += \
     com.dsi.ant@1.0.vendor
 
 # Audio
-PRODUCT_PACKAGES += \
-    android.hardware.bluetooth.audio-V2-ndk.vendor
+AUDIO_HAL_DIR := vendor/qcom/opensource/audio-hal/primary-hal
+QCV_FAMILY_SKUS := taro
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/audio_policy_configuration.xml \
-    $(LOCAL_PATH)/audio/audio_policy_configuration_a2dp_offload_disabled.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration_a2dp_offload_disabled.xml \
-    $(LOCAL_PATH)/audio/bluetooth_hearing_aid_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_hearing_aid_audio_policy_configuration.xml
+PRODUCT_PACKAGES += \
+    android.hardware.audio@7.1-impl \
+    android.hardware.audio.effect@7.1-impl \
+    android.hardware.audio.service \
+    android.hardware.audio.sounddose-vendor-impl \
+    android.hardware.bluetooth.audio-impl \
+    android.hardware.soundtrigger@2.3-impl \
+    audio.bluetooth.default \
+    libeffectproxy \
+    libfmpal \
+    libhapticgenerator \
+    libldnhncr \
+    libreverbwrapper \
+    libvisualizer
+
+# # Audio
+# PRODUCT_PACKAGES += \
+#     android.hardware.bluetooth.audio-V2-ndk.vendor
+
+# PRODUCT_COPY_FILES += \
+#     $(LOCAL_PATH)/audio/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio/audio_policy_configuration.xml \
+#     $(LOCAL_PATH)/audio/audio_policy_configuration_a2dp_offload_disabled.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration_a2dp_offload_disabled.xml \
+#     $(LOCAL_PATH)/audio/bluetooth_hearing_aid_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_hearing_aid_audio_policy_configuration.xml
 
 # Authsecret
 PRODUCT_PACKAGES += \
@@ -90,8 +109,13 @@ PRODUCT_PACKAGES += \
     android.hardware.boot@1.2-impl-qti.recovery \
     android.hardware.boot@1.2-service
 
+# Display
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.display.config-V2-ndk_platform.vendor \
+    vendor.qti.hardware.display.config-V5-ndk_platform.vendor \
+    vendor.qti.hardware.memtrack-service
 
-# Camera
+# Camera TODO: Add oplus camere from Machad
 PRODUCT_PACKAGES += \
     android.frameworks.cameraservice.service@2.2.vendor \
     android.frameworks.sensorservice@1.0.vendor \
@@ -117,7 +141,6 @@ PRODUCT_COPY_FILES += \
 
 # Characteristics
 PRODUCT_CHARACTERISTICS := nosdcard
-
 
 # Doze
 PRODUCT_PACKAGES += \
@@ -157,22 +180,32 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/privapp-permissions-hotword.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-hotword.xml
 
 # Init
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/init/fstab.qcom:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.qcom
+
 PRODUCT_PACKAGES += \
     fstab.qcom \
-    fstab.qcom.vendor_ramdisk \
-    init.class_main.sh \
-    init.oplus.hw.rc \
-    init.oplus.hw.rc.recovery \
-    init.oplus.rc \
-    init.qcom.early_boot.sh \
-    init.qcom.rc \
-    init.qcom.recovery.rc \
-    init.qcom.sh \
-    init.qcom.usb.rc \
-    init.qcom.usb.sh \
     init.target.rc \
-    ueventd.oplus.rc \
-    ueventd.qcom.rc
+    init.oplus.rc \
+    ueventd.oplus.rc
+
+# # Init
+# PRODUCT_PACKAGES += \
+#     fstab.qcom \
+#     fstab.qcom.vendor_ramdisk \
+#     init.class_main.sh \
+#     init.oplus.hw.rc \
+#     init.oplus.hw.rc.recovery \
+#     init.oplus.rc \
+#     init.qcom.early_boot.sh \
+#     init.qcom.rc \
+#     init.qcom.recovery.rc \
+#     init.qcom.sh \
+#     init.qcom.usb.rc \
+#     init.qcom.usb.sh \
+#     init.target.rc \
+#     ueventd.oplus.rc \
+#     ueventd.qcom.rc
 
 # Keymaster
 PRODUCT_PACKAGES += \
