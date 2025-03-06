@@ -54,8 +54,6 @@ ART_BUILD_HOST_NDEBUG := true
 ART_BUILD_HOST_DEBUG := false
 
 # A/B
-AB_OTA_UPDATER := true
-
 AB_OTA_PARTITIONS += \
     boot \
     dtbo \
@@ -76,36 +74,14 @@ AB_OTA_UPDATER := true
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "qualcomm-hidl"
 
-# Audio
-AUDIO_FEATURE_ENABLED_DLKM := true
-AUDIO_FEATURE_ENABLED_GEF_SUPPORT := true
-AUDIO_FEATURE_ENABLED_GKI := true
-AUDIO_FEATURE_ENABLED_INSTANCE_ID := true
-#AUDIO_FEATURE_ENABLED_AGM_HIDL := true
-AUDIO_FEATURE_ENABLED_LSM_HIDL := true
-AUDIO_FEATURE_ENABLED_PAL_HIDL := true
-AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
-AUDIO_FEATURE_ENABLED_SSR := true
-AUDIO_FEATURE_ENABLED_SVA_MULTI_STAGE := true
-BOARD_SUPPORTS_OPENSOURCE_STHAL := true
-BOARD_SUPPORTS_SOUND_TRIGGER := true
-BOARD_USES_ALSA_AUDIO := true
-TARGET_USES_QCOM_MM_AUDIO := true
-
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := taro
-
-# Display
-TARGET_GRALLOC_HANDLE_HAS_RESERVED_SIZE := true
 
 # Properties
 TARGET_ODM_PROP += $(COMMON_PATH)/odm.prop
 TARGET_PRODUCT_PROP += $(COMMON_PATH)/product.prop
 TARGET_SYSTEM_EXT_PROP += $(COMMON_PATH)/system_ext.prop
 TARGET_VENDOR_PROP += $(COMMON_PATH)/vendor.prop
-
-# Filesystem
-TARGET_FS_CONFIG_GEN := $(COMMON_PATH)/config.fs
 
 # Fingerprint
 TARGET_SURFACEFLINGER_UDFPS_LIB := //hardware/oplus:libudfps_extension.oplus
@@ -116,20 +92,12 @@ ADD_RADIO_FILES := false
 # Build
 BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES  := true
-BUILD_BROKEN_VENDOR_PROPERTY_NAMESPACE := true
-
-# HIDL
-#DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
-#   $(COMMON_PATH)/configs/vintf/framework_compatibility_matrix.xml
-
-#DEVICE_MANIFEST_FILE += \
-#    $(COMMON_PATH)/configs/vintf/taro_manifest.xml \
-#    $(COMMON_PATH)/configs/vintf/wly_manifest.xml
+#BUILD_BROKEN_VENDOR_PROPERTY_NAMESPACE := true
 
 # Init
 TARGET_INIT_VENDOR_LIB := //$(COMMON_PATH):libinit_oplus
 
-# Boot control
+# Boot control UFS
 SOONG_CONFIG_NAMESPACES += ufsbsg
 SOONG_CONFIG_ufsbsg += ufsframework
 SOONG_CONFIG_ufsbsg_ufsframework := bsg
@@ -147,13 +115,7 @@ BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_BOOT_HEADER_VERSION := 4
 BOARD_MKBOOTIMG_ARGS := --header_version $(BOARD_BOOT_HEADER_VERSION)
 
-BOARD_KERNEL_CMDLINE := \
-    mtdoops.fingerprint=$(AOSPA_VERSION) \
-    swinfo.fingerprint=$(AOSPA_VERSION) \
-    msm_geni_serial.con_enabled=0 \
-    allow_file_spec_access \
-    irqaffinity=0-3 \
-    pelt=8
+BOARD_KERNEL_CMDLINE := msm_geni_serial.con_enabled=0
 
 BOARD_BOOTCONFIG:= \
     androidboot.hardware=qcom \
@@ -162,7 +124,6 @@ BOARD_BOOTCONFIG:= \
     androidboot.usbcontroller=a600000.dwc3
 
 BOARD_BOOTCONFIG += androidboot.selinux=permissive
-
 
 # Lineage Health
 TARGET_HEALTH_CHARGING_CONTROL_CHARGING_PATH := /sys/class/oplus_chg/battery/mmi_charging_enable

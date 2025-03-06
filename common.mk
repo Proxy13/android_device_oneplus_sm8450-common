@@ -3,13 +3,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-# Configure updatable_apex.mk
+
 
 LOCAL_PATH := device/oneplus/sm8450-common
 HARDWARE_PATH := hardware/oplus
-
-
-$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
 # Setup dalvik vm configs
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
@@ -19,7 +16,7 @@ $(call inherit-product, vendor/oneplus/sm8450-common/sm8450-common-vendor.mk)
 
 # A/B
 ENABLE_VIRTUAL_AB := true
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_vendor_ramdisk.mk)
 
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
@@ -97,12 +94,6 @@ PRODUCT_PACKAGES += \
 # DebugFS
 PRODUCT_SET_DEBUGFS_RESTRICTIONS := true
 
-# Dex
-PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
-PRODUCT_DEX_PREOPT_DEFAULT_COMPILER_FILTER := everything
-PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
-USE_DEX2OAT_DEBUG := false
-
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
@@ -136,7 +127,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     vendor.aospa.powershare-service
 
-# QTI components
+# QTI Components
 TARGET_COMMON_QTI_COMPONENTS := \
     adreno \
     alarm \
@@ -146,10 +137,13 @@ TARGET_COMMON_QTI_COMPONENTS := \
     display \
     gps \
     init \
+    media \
+    nfc \
     overlay \
     perf \
     telephony \
     usb \
+    vibrator \
     wfd \
     wlan
 
@@ -241,13 +235,6 @@ PRODUCT_PACKAGES += \
 # Generic ramdisk
 $(call inherit-product, $(SRC_TARGET_DIR)/product/generic_ramdisk.mk)
 
-# Manifests
-#DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += hardware/oplus/vintf/device_framework_matrix.xml
-#DEVICE_MANIFEST_FILE += \
-#    $(LOCAL_PATH)/configs/vintf/manifest_taro.xml \
-#    $(LOCAL_PATH)/configs/vintf/manifest_oneplus10pro.xml
-
-
 # HIDL
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
    $(COMMON_PATH)/configs/vintf/framework_compatibility_matrix.xml
@@ -326,16 +313,6 @@ PRODUCT_PACKAGES += \
     OPlusSettings \
     OplusSettingsProvider \
     OplusSystemUI
-
-PRODUCT_ENFORCE_RRO_TARGETS := *
-PRODUCT_PACKAGES += \
-    CarrierConfigResCommon \
-    FrameworksResTarget \
-    OPlusFrameworksResCommon \
-    OPlusSettingsResCommon \
-    OPlusSystemUIResCommon \
-    WifiResTarget
-
 
 # Power
 PRODUCT_PACKAGES += \
